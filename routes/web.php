@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Lurah\DashboardLurahController;
+use App\Http\Controllers\Staff\DashboardStaffController;
+use App\Http\Controllers\User\DashboardUserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::prefix('/pages/dashboard/lurah')
+        ->middleware(['auth', 'lurah'])
+        ->group(function(){
+            Route::get('/', [DashboardLurahController::class, 'index'])->name('lurah.dashboard');
+        });
+
+Route::prefix('/pages/dashboard/staff')
+        ->middleware(['auth', 'staff'])
+        ->group(function(){
+            Route::get('/', [DashboardStaffController::class, 'index'])->name('staff.dashboard');
+        });
+
+Route::prefix('/pages/dashboard/user')
+        ->middleware(['auth', 'user'])
+        ->group(function(){
+            Route::get('/', [DashboardUserController::class, 'index'])->name('user.dashboard');
+        });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
