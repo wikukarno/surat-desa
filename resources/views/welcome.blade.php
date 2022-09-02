@@ -16,7 +16,7 @@
     <header class="text-center">
 		<div class="overlay">
 			<figure class="figure">
-				<img src="{{ asset('assets/images/logo.png') }}" class="img-fluid figure-img w-50 h-50" alt="">
+				<img src="{{ asset('assets/images/logo') }}" class="img-fluid figure-img w-50 h-50" alt="">
 			</figure>
             <h1 class="text-white">
               SELAMAT DATANG DI!
