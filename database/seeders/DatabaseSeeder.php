@@ -33,5 +33,14 @@ class DatabaseSeeder extends Seeder
             'roles' => 'Staff',
             'no_telephone' => '087823432323',
         ]);
+
+        // buat akun user
+        User::create([
+            'name' => 'Normansyah',
+            'email' => 'norman@gmail.com',
+            'password' => bcrypt('123456'),
+            'roles' => 'User',
+            'no_telephone' => '087823432323',
+        ]);
     }
 }

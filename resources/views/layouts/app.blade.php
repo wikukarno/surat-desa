@@ -16,8 +16,9 @@
 
 			<!-- Content -->
 			<div class="content-wrapper">
-				@include('includes.dashboard.breadcrumb')
-				@yield('content')
+				<div class="content pt-3">
+					@yield('content')
+				</div>
 			</div>
 			@include('includes.dashboard.footer')
 		</div>

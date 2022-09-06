@@ -148,14 +148,34 @@
             </p>
           </a>
         </li>
+
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
+          <a href="{{ route('sku.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
             <p>
-              Staff & Penduduk
+              SK Usaha
             </p>
           </a>
         </li>
+
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Pemakaman
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Tidak Mampu
+            </p>
+          </a>
+        </li>
+
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
