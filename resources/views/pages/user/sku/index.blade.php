@@ -40,6 +40,7 @@
         </div>
     </section>
     @include('pages.user.sku.modal-tambah-sku')
+    @include('pages.user.sku.modal-status-proses')
 @endsection
 
 @push('addon-script')
@@ -47,9 +48,9 @@
         $('#tb_sku').DataTable({
             processing: true,
             serverSide: true,
-            ordering: true,
+            ordering: [[1, 'asc']],
             ajax: {
-                url: '{!! url()->current() !!}',
+                url: "{{ route('sku.index') }}",
             },
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },
@@ -58,13 +59,22 @@
                 { data: 'created_at', name: 'created_at' },
                 { data: 'posisi', name: 'posisi' },
                 { 
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: false, 
-                    searchable: false 
+                    data: 'status', 
+                    name: 'status', 
                 },
             ],
 
         });
+
+        function selesaiProses(id){
+            Swal.fire({
+                title: 'Surat Selesai Diproses!',
+                text: "Surat Keterangan Usaha anda telah selesai diproses, silahkan ambil surat anda di kantor desa",
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oke'
+            })
+        }
     </script>
 @endpush

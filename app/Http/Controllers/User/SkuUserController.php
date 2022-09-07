@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SkuRequest;
 use App\Models\SKU;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,48 +18,26 @@ class SkuUserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = SKU::where('users_id', Auth::user()->id)->get();
+            $query = SKU::where('users_id', Auth::user()->id);
 
             return datatables()->of($query)
+                ->addIndexColumn()
                 ->editColumn('created_at', function ($item) {
                     return $item->created_at->format('d F Y');
                 })
-                ->addColumn('action', function ($item) {
-                    if ($item->status_proses == 'Waiting') {
+                ->editColumn('status', function ($item) {
+                    if ($item->status == 'Belum Diproses') {
+                        return '<span class="badge badge-pill badge-warning">' . $item->status . '</span>';
+                    } elseif ($item->status == 'Sedang Diproses') {
+                        return '<span class="badge badge-pill badge-info">' . $item->status . '</span>';
+                    } else {
                         return '
-                            <div class="action d-flex">
-                                <a href="javascript:void(0)" class="btn btn-pill btn-outline-danger btn-sm disabled">' . $item->status_proses . '</a>
-                                <a href="javascript:void(0)" class="btn btn-pill btn-warning btn-sm ms-3" onClick="updateSubmission(' . $item->id . ')">Update</a>
-                            </div>
-                        ';
-                    } elseif ($item->status_proses == 'In Review') {
-                        return '
-                            <div class="action">
-                                <a href="javascript:void(0)" class="btn btn-pill btn-warning btn-sm disabled">' . $item->status_proses . '</a>
-                            </div>
-                        ';
-                    } elseif ($item->status_submission == 'Conflicted') {
-                        return '
-                            <div class="action">
-                                <a href="javascript:void(0)" class="btn btn-pill btn-danger btn-sm" onClick="seeAccepted(' . $item->id . ')">Conflicted</a>
-                            </div>
-                        ';
-                    } elseif ($item->status_proses == 'Rejected') {
-                        return '
-                            <div class="action">
-                                <a href="javascript:void(0)" class="btn btn-pill btn-danger btn-sm" onClick="seeRejected(' . $item->id . ')">Rejected</a>
-                            </div>
-                        ';
-                    } elseif ($item->status_proses == 'Accepted') {
-                        return '
-                            <div class="action">
-                            <a href="javascript:void(0)" class="btn btn-pill btn-success btn-sm mb-2" onClick="seeAccepted(' . $item->id . ')">Abstract Accepted</a>
-                            </div>
+                            <a href="#" class="badge badge-pill badge-success" onclick="selesaiProses(' . $item->id . ')">' . $item->status . '</a>
                         ';
                     }
                 })
 
-                ->rawColumns(['created_at', 'action'])
+                ->rawColumns(['created_at', 'status'])
                 ->make(true);
         }
         return view('pages.user.sku.index');
@@ -82,7 +61,10 @@ class SkuUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['users_id'] = Auth::user()->id;
+        SKU::create($data);
+        return redirect()->route('user.sku.index');
     }
 
     /**

@@ -141,7 +141,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
+          <a href="{{ route('user.dashboard') }}" class="nav-link {{ (request()->is('pages/dashboard/user')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -150,7 +150,7 @@
         </li>
 
         <li class="nav-item menu-open">
-          <a href="{{ route('sku.index') }}" class="nav-link">
+          <a href="{{ route('sku.index') }}" class="nav-link {{ (request()->is('pages/dashboard/user/sku')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-file"></i>
             <p>
               SK Usaha

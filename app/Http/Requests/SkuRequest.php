@@ -13,7 +13,7 @@ class SkuRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,24 @@ class SkuRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'users_id' => 'required',
+            'nama' => 'string',
+            'nama_usaha' => 'string',
+            'no_surat' => 'string',
+            'jenis_kelamin' => 'string',
+            'tempat_lahir' => 'string',
+            'tanggal_lahir' => 'string',
+            'alamat' => 'string',
+            'pekerjaan' => 'string',
+            'rt_rw' => 'string',
+            'kelurahan' => 'string',
+            'kecamatan' => 'string',
+            'agama' => 'string',
+            'status_perkawinan' => 'string',
+            'no_nik' => 'string',
+            'posisi' => 'string',
+            'status' => 'string',
+
         ];
     }
 }
