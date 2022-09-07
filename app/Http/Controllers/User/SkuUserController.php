@@ -64,7 +64,7 @@ class SkuUserController extends Controller
         $data = $request->all();
         $data['users_id'] = Auth::user()->id;
         SKU::create($data);
-        return redirect()->route('user.sku.index');
+        return back();
     }
 
     /**

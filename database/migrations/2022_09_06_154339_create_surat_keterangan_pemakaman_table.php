@@ -16,7 +16,7 @@ class CreateSuratKeteranganPemakamanTable extends Migration
         Schema::create('surat_keterangan_pemakaman', function (Blueprint $table) {
             $table->id();
             $table->string('users_id');
-            $table->string('nomor_surat');
+            $table->string('nomor_surat')->nullable();
             $table->string('nama');
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
