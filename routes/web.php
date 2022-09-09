@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Lurah\DashboardLurahController;
+use App\Http\Controllers\Lurah\SkuLurahController;
 use App\Http\Controllers\Staff\DashboardStaffController;
+use App\Http\Controllers\Staff\SkuStaffController;
 use App\Http\Controllers\User\DashboardUserController;
 use App\Http\Controllers\User\SkuUserController;
 use Illuminate\Support\Facades\Auth;
@@ -25,12 +27,17 @@ Route::prefix('/pages/dashboard/lurah')
     ->middleware(['auth', 'lurah'])
     ->group(function () {
         Route::get('/', [DashboardLurahController::class, 'index'])->name('lurah.dashboard');
+        Route::get('/sku', [SkuLurahController::class, 'index'])->name('sku-lurah.index');
+        Route::post('/sku/setujui/{id}', [SkuLurahController::class, 'update'])->name('sku-lurah.update');
     });
 
 Route::prefix('/pages/dashboard/staff')
     ->middleware(['auth', 'staff'])
     ->group(function () {
         Route::get('/', [DashboardStaffController::class, 'index'])->name('staff.dashboard');
+
+        Route::get('/sku', [SkuStaffController::class, 'index'])->name('sku-staff.index');
+        Route::post('/sku/teruskan/{id}', [SkuStaffController::class, 'update'])->name('sku-staff.update');
     });
 
 Route::prefix('/pages/dashboard/user')

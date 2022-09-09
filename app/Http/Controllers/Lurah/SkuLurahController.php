@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Lurah;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SkuRequest;
 use App\Models\SKU;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class SkuUserController extends Controller
+class SkuLurahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,7 @@ class SkuUserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = SKU::where('users_id', Auth::user()->id);
+            $query = SKU::query();
 
             return datatables()->of($query)
                 ->addIndexColumn()
@@ -32,15 +30,46 @@ class SkuUserController extends Controller
                         return '<span class="badge badge-pill badge-info">' . $item->status . '</span>';
                     } else {
                         return '
-                            <a href="#" class="badge badge-pill badge-success" onclick="selesaiProses(' . $item->id . ')">' . $item->status . '</a>
+                            <span class="badge badge-pill badge-success">' . $item->status . '</span>
+                        ';
+                    }
+                })
+                ->editColumn('action', function ($item) {
+                    if ($item->posisi == 'lurah') {
+                        return '
+                            <form action="' . route('sku-lurah.update', $item->id) . '" method="POST" class="d-inline">
+                                ' . csrf_field() . '
+                                <button class="btn btn-sm btn-success">
+                                    Setujui
+                                </button>
+                            </form>
+                        ';
+                    } elseif ($item->status == 'Selesai') {
+                        return '
+                            <a href="#" class="btn btn-sm btn-outline-success">
+                                Cetak
+                            </a>
+                        ';
+                    } else {
+                        return '
+                            <a href="#" class="btn btn-sm btn-secondary">
+                                <i class="fa fa-eye"></i>
+                            </a>
+
+                            <form action="' . route('sku-lurah.update', $item->id) . '" method="POST" class="d-inline">
+                                ' . csrf_field() . '
+                                <button class="btn btn-sm btn-warning">
+                                    Teruskan
+                                </button>
+                            </form>
                         ';
                     }
                 })
 
-                ->rawColumns(['created_at', 'status'])
+                ->rawColumns(['created_at', 'status', 'action'])
                 ->make(true);
         }
-        return view('pages.user.sku.index');
+        return view('pages.lurah.sku.index');
     }
 
     /**
@@ -61,19 +90,7 @@ class SkuUserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['users_id'] = Auth::user()->id;
-        if ($request->hasFile('foto_ktp')) {
-            $data['foto_ktp'] = $request->file('foto_ktp')->store('assets/sku/foto_ktp', 'public');
-        }
-        if ($request->hasFile('foto_kk')) {
-            $data['foto_kk'] = $request->file('foto_kk')->store('assets/sku/foto_kk', 'public');
-        }
-        if ($request->hasFile('foto_surat_rt_rw')) {
-            $data['foto_surat_rt_rw'] = $request->file('foto_surat_rt_rw')->store('assets/sku/foto_surat_rt_rw', 'public');
-        }
-        SKU::create($data);
-        return back();
+        //
     }
 
     /**
@@ -107,7 +124,12 @@ class SkuUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sku = SKU::findOrFail($id);
+        $sku->status = 'Selesai';
+        $sku->posisi = 'Staff';
+        $sku->save();
+
+        return redirect()->route('sku-lurah.index');
     }
 
     /**

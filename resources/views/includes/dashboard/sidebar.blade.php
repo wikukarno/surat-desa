@@ -28,6 +28,14 @@
             </p>
           </a>
         </li>
+		<li class="nav-item menu-open">
+          <a href="{{ route('sku-lurah.index') }}" class="nav-link {{ (request()->is('pages/dashboard/lurah/sku') ? 'active' : '') }}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Usaha
+            </p>
+          </a>
+        </li>
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
@@ -81,10 +89,18 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
+          <a href="#" class="nav-link {{ (request()->is('pages/dashboard/staff') ? 'active' : '') }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
+            </p>
+          </a>
+        </li>
+        <li class="nav-item menu-open">
+          <a href="{{ route('sku-staff.index') }}" class="nav-link {{ (request()->is('pages/dashboard/staff/sku') ? 'active' : '') }}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Usaha
             </p>
           </a>
         </li>

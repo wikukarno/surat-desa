@@ -33,6 +33,9 @@ class SKU extends Model
         'status_proses',
         'status_submission',
         'keterangan',
+        'foto_ktp',
+        'foto_kk',
+        'foto_surat_rt_rw',
         'created_at',
         'updated_at',
     ];

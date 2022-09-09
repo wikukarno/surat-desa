@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
 
-        <form action="{{ route('sku.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('sku.store') }}" method="POST" enctype="multipart/form-data" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-4">
@@ -108,6 +108,27 @@
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Foto KTP</label>
+                        <input type="file" class="form-control" id="foto_ktp" name="foto_ktp">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Foto KK</label>
+                        <input type="file" class="form-control" id="foto_kk" name="foto_kk">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Surat Keterangan RT/RW</label>
+                        <input type="file" class="form-control" id="foto_surat_rt_rw" name="foto_surat_rt_rw">
                     </div>
                 </div>
             </div>
