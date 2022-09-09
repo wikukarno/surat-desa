@@ -37,8 +37,8 @@
             </div>
         </div>
     </section>
-    @include('pages.user.sku.modal-tambah-sku')
-    @include('pages.user.sku.modal-status-proses')
+    @include('pages.staff.sku.modal-tolak-sku')
+    @include('pages.staff.sku.modal-lampiran-sku')
 @endsection
 
 @push('addon-script')
@@ -76,6 +76,26 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Oke'
             })
+        }
+
+        function tolakSKU(id){
+            $('#tolakSkuModal').modal('show');
+        }
+
+        function lampiranSku(id){
+            $('#lampiranSkuModal').modal('show');
+
+            $.ajax({
+                type:'POST',
+                url: "{{ url('pages/dashboard/staff/sku/get-lampiran') }}",
+                data: {
+                    id:id,
+                    _token: '{{csrf_token()}}'
+                },
+                success: (data) => {
+                    console.log(data);
+                }
+            });
         }
     </script>
 @endpush

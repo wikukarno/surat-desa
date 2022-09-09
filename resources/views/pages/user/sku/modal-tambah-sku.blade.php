@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Surat</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Surat Keterangan Usaha</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="nama">Tanggal Lahir</label>
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
                         <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan tanggal lahir">
                     </div>
                 </div>
@@ -52,7 +52,10 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="nama">Jenis Kelamin</label>
-                        <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" placeholder="Masukkan jenis kelamin">
+                        <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-4">

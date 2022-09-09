@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use App\Models\SKU;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SkuStaffController extends Controller
 {
@@ -41,7 +42,7 @@ class SkuStaffController extends Controller
                                 Diteruskan
                             </a>
                         ';
-                    } elseif ($item->status == 'Selesai') {
+                    } elseif ($item->status == 'Selesai Diproses') {
                         return '
                             <a href="#" class="btn btn-sm btn-success">
                                 Cetak
@@ -49,16 +50,21 @@ class SkuStaffController extends Controller
                         ';
                     } else {
                         return '
-                            <a href="#" class="btn btn-sm btn-secondary">
+                            <a href="#" class="btn btn-sm btn-secondary" onclick="lampiranSku(' . $item->id . ')">
                                 <i class="fa fa-eye"></i>
                             </a>
 
                             <form action="' . route('sku-staff.update', $item->id) . '" method="POST" class="d-inline">
                                 ' . csrf_field() . '
-                                <button class="btn btn-sm btn-warning">
+                                <button type="submit" class="btn btn-sm btn-warning">
                                     Teruskan
                                 </button>
                             </form>
+
+                            <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="tolakSKU(' . $item->id . ')">
+                                Tolak
+                            </a>
+
                         ';
                     }
                 })
@@ -96,9 +102,20 @@ class SkuStaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        if (request()->ajax()) {
+            $where = array('surat_keterangan_usaha.id' => $request->id);
+            $result = SKU::where($where)->first();
+            if ($result) {
+                return Response()->json($result);
+            } else {
+                return Response()->json(['error' => 'Lampiran tidak ditemukan!']);
+            }
+        } else {
+            $result = (['status' => false, 'message' => 'Maaf, akses ditolak!']);
+        }
+        return Response()->json($result);
     }
 
     /**
@@ -123,11 +140,18 @@ class SkuStaffController extends Controller
     {
         $sku = SKU::findOrFail($id);
         $sku->status = 'Sedang Diproses';
-        $sku->posisi = 'Lurah';
+        $sku->posisi = 'lurah';
         $sku->nomor_surat = $request->id;
         $sku->save();
 
-        return redirect()->route('sku-staff.index');
+        if ($sku) {
+            Alert::success('Berhasil', 'Surat Keterangan Usaha berhasil diteruskan!');
+            return redirect()->route('sku-staff.index');
+        } else {
+            Alert::error('Gagal', 'SKU gagal diteruskan!');
+            return redirect()->route('sku-staff.index');
+        }
+        // return redirect()->route('sku-staff.index');
     }
 
     /**

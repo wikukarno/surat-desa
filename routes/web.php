@@ -38,6 +38,8 @@ Route::prefix('/pages/dashboard/staff')
 
         Route::get('/sku', [SkuStaffController::class, 'index'])->name('sku-staff.index');
         Route::post('/sku/teruskan/{id}', [SkuStaffController::class, 'update'])->name('sku-staff.update');
+
+        Route::post('/sku/get-lampiran', [SkuStaffController::class, 'show'])->name('sku-staff.show');
     });
 
 Route::prefix('/pages/dashboard/user')

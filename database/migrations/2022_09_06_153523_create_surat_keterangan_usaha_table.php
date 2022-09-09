@@ -31,7 +31,7 @@ class CreateSuratKeteranganUsahaTable extends Migration
             $table->string('no_nik');
             $table->string('nama_usaha');
             $table->enum('posisi', ['staff', 'lurah'])->default('staff')->nullable();
-            $table->enum('status', ['Belum Diproses', 'Sedang Diproses', 'Selesai'])->default('Belum Diproses')->nullable();
+            $table->enum('status', ['Belum Diproses', 'Sedang Diproses', 'Selesai Diproses', 'Ditolak'])->default('Belum Diproses')->nullable();
             $table->string('foto_ktp')->nullable();
             $table->string('foto_kk')->nullable();
             $table->string('foto_surat_rt_rw')->nullable();

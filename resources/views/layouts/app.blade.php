@@ -23,8 +23,8 @@
 			@include('includes.dashboard.footer')
 		</div>
 
-		@include('sweetalert::alert')
 		@include('components/modal-logout')
+		@include('sweetalert::alert')
 		@stack('prepend-script')
 		@include('includes.dashboard.script')
 		@stack('addon-script')

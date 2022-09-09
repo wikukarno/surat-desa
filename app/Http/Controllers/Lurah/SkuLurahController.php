@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lurah;
 use App\Http\Controllers\Controller;
 use App\Models\SKU;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SkuLurahController extends Controller
 {
@@ -16,7 +17,7 @@ class SkuLurahController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = SKU::query();
+            $query = SKU::where('posisi', 'lurah')->get();
 
             return datatables()->of($query)
                 ->addIndexColumn()
@@ -125,9 +126,17 @@ class SkuLurahController extends Controller
     public function update(Request $request, $id)
     {
         $sku = SKU::findOrFail($id);
-        $sku->status = 'Selesai';
+        $sku->status = 'Selesai Diproses';
         $sku->posisi = 'Staff';
         $sku->save();
+
+        if ($sku) {
+            Alert::success('Berhasil', 'Surat Keterangan Usaha berhasil disetujui!');
+            return redirect()->route('sku-lurah.index');
+        } else {
+            Alert::error('Gagal', 'Surat Keterangan Usaha gagal disetujui!');
+            return redirect()->route('sku-lurah.index');
+        }
 
         return redirect()->route('sku-lurah.index');
     }
