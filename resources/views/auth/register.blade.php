@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-    Daftar
+    Daftar Akun
 @endsection
 
 @section('content')
