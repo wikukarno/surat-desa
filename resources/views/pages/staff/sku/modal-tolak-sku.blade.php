@@ -11,7 +11,7 @@
         <div class="container">
             <form id="form-tolak-sku">
                 @csrf
-                <input type="text" name="id" id="id-sku">
+                <input type="hidden" name="id" id="id-sku">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">

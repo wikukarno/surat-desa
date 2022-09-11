@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\CetakController;
+use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Lurah\DashboardLurahController;
 use App\Http\Controllers\Lurah\SkuLurahController;
 use App\Http\Controllers\Staff\DashboardStaffController;
+use App\Http\Controllers\Staff\ProfileStaffController;
 use App\Http\Controllers\Staff\SkuStaffController;
 use App\Http\Controllers\User\DashboardUserController;
+use App\Http\Controllers\User\ProfileUserController;
 use App\Http\Controllers\User\SkuUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,8 +43,14 @@ Route::prefix('/pages/dashboard/staff')
         Route::get('/sku', [SkuStaffController::class, 'index'])->name('sku-staff.index');
         Route::post('/sku/tolak-sku', [SkuStaffController::class, 'tolakSku'])->name('sku-staff.tolak');
         Route::post('/sku/teruskan/{id}', [SkuStaffController::class, 'update'])->name('sku-staff.update');
+        Route::get('/penduduk', [DataPendudukController::class, 'index'])->name('data-penduduk.index');
+        Route::get('/akun', [ProfileStaffController::class, 'index'])->name('staff.akun');
+        Route::post('/akun/update', [ProfileStaffController::class, 'update'])->name('staff.update-akun');
+        Route::post('/get-akun', [ProfileStaffController::class, 'show'])->name('staff.get-akun');
+        Route::post('/ubah-foto', [ProfileStaffController::class, 'ubahFoto'])->name('staff.ubah-foto');
 
         Route::post('/sku/get-lampiran', [SkuStaffController::class, 'show'])->name('sku-staff.show');
+        Route::get('/sku/cetak/{id}', [CetakController::class, 'cetak_sku'])->name('sku-staff.cetak-sku');
     });
 
 Route::prefix('/pages/dashboard/user')
@@ -48,6 +58,11 @@ Route::prefix('/pages/dashboard/user')
     ->group(function () {
         Route::get('/', [DashboardUserController::class, 'index'])->name('user.dashboard');
         Route::post('/sku/get-penolakan', [SkuUserController::class, 'getPenolakan'])->name('sku-user.get-penolakan');
+
+        Route::get('/akun', [ProfileUserController::class, 'index'])->name('user.akun');
+        Route::post('/akun/update', [ProfileUserController::class, 'update'])->name('user.update-akun');
+        Route::post('/get-akun', [ProfileUserController::class, 'show'])->name('user.get-akun');
+        Route::post('/ubah-foto', [ProfileUserController::class, 'ubahFoto'])->name('user.ubah-foto');
 
         Route::resource('sku', SkuUserController::class);
     });
