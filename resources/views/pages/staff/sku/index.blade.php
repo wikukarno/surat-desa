@@ -75,11 +75,12 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Oke'
-            })
+            });
         }
 
         function tolakSKU(id){
             $('#tolakSkuModal').modal('show');
+            $('#id-sku').val(id);
         }
 
         function lampiranSku(id){
@@ -97,5 +98,30 @@
                 }
             });
         }
+
+        $('#form-tolak-sku').submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type:'POST',
+                url: "{{ url('pages/dashboard/staff/sku/tolak-sku') }}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    $('#tolakSkuModal').modal('hide');
+                    $('#tb_sku').DataTable().ajax.reload();
+                    Swal.fire({
+                        title: 'Surat Berhasil Ditolak!',
+                        text: "Surat Keterangan Usaha telah ditolak",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oke'
+                    })
+                }
+            });
+        });
     </script>
 @endpush

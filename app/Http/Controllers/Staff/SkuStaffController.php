@@ -29,10 +29,10 @@ class SkuStaffController extends Controller
                         return '<span class="badge badge-pill badge-warning">' . $item->status . '</span>';
                     } elseif ($item->status == 'Sedang Diproses') {
                         return '<span class="badge badge-pill badge-info">' . $item->status . '</span>';
+                    } elseif ($item->status == 'Ditolak') {
+                        return '<span class="badge badge-pill badge-danger">' . $item->status . '</span>';
                     } else {
-                        return '
-                            <span class="badge badge-pill badge-success">' . $item->status . '</span>
-                        ';
+                        return '<span class="badge badge-pill badge-success">' . $item->status . '</span>';
                     }
                 })
                 ->editColumn('action', function ($item) {
@@ -47,6 +47,10 @@ class SkuStaffController extends Controller
                             <a href="#" class="btn btn-sm btn-success">
                                 Cetak
                             </a>
+                        ';
+                    } elseif ($item->status == 'Ditolak') {
+                        return '
+                            <a href="javascript:void(0)" class="btn btn-danger disabled">' . $item->status . '</a>
                         ';
                     } else {
                         return '
@@ -151,7 +155,6 @@ class SkuStaffController extends Controller
             Alert::error('Gagal', 'SKU gagal diteruskan!');
             return redirect()->route('sku-staff.index');
         }
-        // return redirect()->route('sku-staff.index');
     }
 
     /**
@@ -163,5 +166,23 @@ class SkuStaffController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tolakSku(Request $request)
+    {
+        // dd($request->all());
+        $sku = SKU::findOrFail($request->id);
+        $sku->status = 'Ditolak';
+        $sku->posisi = 'staff';
+        $sku->alasan_penolakan = $request->alasan_penolakan;
+        $sku->save();
+
+        if ($sku) {
+            Alert::success('Berhasil', 'Surat Keterangan Usaha berhasil diteruskan!');
+            return redirect()->route('sku-staff.index');
+        } else {
+            Alert::error('Gagal', 'SKU gagal diteruskan!');
+            return redirect()->route('sku-staff.index');
+        }
     }
 }

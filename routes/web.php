@@ -37,6 +37,7 @@ Route::prefix('/pages/dashboard/staff')
         Route::get('/', [DashboardStaffController::class, 'index'])->name('staff.dashboard');
 
         Route::get('/sku', [SkuStaffController::class, 'index'])->name('sku-staff.index');
+        Route::post('/sku/tolak-sku', [SkuStaffController::class, 'tolakSku'])->name('sku-staff.tolak');
         Route::post('/sku/teruskan/{id}', [SkuStaffController::class, 'update'])->name('sku-staff.update');
 
         Route::post('/sku/get-lampiran', [SkuStaffController::class, 'show'])->name('sku-staff.show');
@@ -46,6 +47,7 @@ Route::prefix('/pages/dashboard/user')
     ->middleware(['auth', 'user'])
     ->group(function () {
         Route::get('/', [DashboardUserController::class, 'index'])->name('user.dashboard');
+        Route::post('/sku/get-penolakan', [SkuUserController::class, 'getPenolakan'])->name('sku-user.get-penolakan');
 
         Route::resource('sku', SkuUserController::class);
     });

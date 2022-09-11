@@ -76,5 +76,27 @@
                 confirmButtonText: 'Oke'
             })
         }
+
+        function penolakanSku(id){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('sku-user.get-penolakan') }}",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                dataType: "JSON",
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Surat Ditolak!',
+                        text: "Keterangan Penolakan : " +response.alasan_penolakan,
+                        icon: 'error',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oke'
+                    });
+                }
+            });
+        }
     </script>
 @endpush

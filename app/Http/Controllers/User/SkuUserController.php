@@ -30,6 +30,10 @@ class SkuUserController extends Controller
                         return '<span class="badge badge-pill badge-warning">' . $item->status . '</span>';
                     } elseif ($item->status == 'Sedang Diproses') {
                         return '<span class="badge badge-pill badge-info">' . $item->status . '</span>';
+                    } elseif ($item->status == 'Ditolak') {
+                        return '
+                            <a href="#" class="badge badge-pill badge-danger" onclick="penolakanSku(' . $item->id . ')">' . $item->status . '</a>
+                        ';
                     } else {
                         return '
                             <a href="#" class="badge badge-pill badge-success" onclick="selesaiProses(' . $item->id . ')">' . $item->status . '</a>
@@ -82,9 +86,20 @@ class SkuUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        if (request()->ajax()) {
+            $where = array('surat_keterangan_usaha.id' => $request->id);
+            $result = SKU::where($where)->first();
+            if ($result) {
+                return Response()->json($result);
+            } else {
+                return Response()->json(['error' => 'Lampiran tidak ditemukan!']);
+            }
+        } else {
+            $result = (['status' => false, 'message' => 'Maaf, akses ditolak!']);
+        }
+        return Response()->json($result);
     }
 
     /**
@@ -119,5 +134,21 @@ class SkuUserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPenolakan(Request $request)
+    {
+        if (request()->ajax()) {
+            $where = array('surat_keterangan_usaha.id' => $request->id);
+            $result = SKU::where($where)->first();
+            if ($result) {
+                return Response()->json($result);
+            } else {
+                return Response()->json(['error' => 'Lampiran tidak ditemukan!']);
+            }
+        } else {
+            $result = (['status' => false, 'message' => 'Maaf, akses ditolak!']);
+        }
+        return Response()->json($result);
     }
 }

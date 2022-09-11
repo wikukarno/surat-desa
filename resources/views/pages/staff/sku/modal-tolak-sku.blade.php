@@ -9,8 +9,9 @@
       </div>
       <div class="modal-body">
         <div class="container">
-            <form action="#" method="POST">
+            <form id="form-tolak-sku">
                 @csrf
+                <input type="text" name="id" id="id-sku">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -21,7 +22,7 @@
                 </div>
                 <div class="flex text-right">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">Tolak Sekarang</button>
+                    <button type="submit" id="btnTolakSku" class="btn btn-success">Tolak Sekarang</button>
                 </div>
             </form>
         </div>
