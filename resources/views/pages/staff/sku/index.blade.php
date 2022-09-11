@@ -83,22 +83,6 @@
             $('#id-sku').val(id);
         }
 
-        function lampiranSku(id){
-            $('#lampiranSkuModal').modal('show');
-
-            $.ajax({
-                type:'POST',
-                url: "{{ url('pages/dashboard/staff/sku/get-lampiran') }}",
-                data: {
-                    id:id,
-                    _token: '{{csrf_token()}}'
-                },
-                success: (data) => {
-                    console.log(data);
-                }
-            });
-        }
-
         $('#form-tolak-sku').submit(function(e){
             e.preventDefault();
             var formData = new FormData(this);
@@ -123,5 +107,23 @@
                 }
             });
         });
+
+        function lampiranSku(id){
+            $('#lampiranSkuModal').modal('show');
+
+            $.ajax({
+                type:'POST',
+                url: "{{ url('pages/dashboard/staff/sku/get-lampiran') }}",
+                data: {
+                    id:id,
+                    _token: '{{csrf_token()}}'
+                },
+                success: (data) => {
+                    $('#ktp').attr('src', '{{ asset('storage') }}/'+data.foto_ktp);
+                    $('#kk').attr('src', '{{ asset('storage') }}/'+data.foto_kk);
+                    $('#skt_rt_rw').attr('src', '{{ asset('storage') }}/'+data.foto_surat_rt_rw);
+                }
+            });
+        }
     </script>
 @endpush
