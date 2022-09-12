@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +30,18 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/pages/user';
+    // protected $redirectTo = '/pages/user';
+
+    protected function authenticated()
+    {
+        if (Auth::user()->roles == 'Lurah') {
+            return redirect()->route('lurah.dashboard');
+        } elseif (Auth::user()->roles == 'Staff') {
+            return redirect()->route('staff.dashboard');
+        } elseif (Auth::user()->roles == 'User') {
+            return redirect()->route('user.dashboard');
+        }
+    }
 
     /**
      * Create a new controller instance.
