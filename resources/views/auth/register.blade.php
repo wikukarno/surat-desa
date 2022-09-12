@@ -72,7 +72,7 @@
             </form>
             <div class="row text-center">
                 <div class="col-12">
-                    <a href="{{ route('login') }}" class="text-center text-success">I already have a membership</a>
+                    <a href="{{ route('login') }}" class="text-center text-success">Sudah punya akun</a>
                 </div>
             </div>
         </div>
