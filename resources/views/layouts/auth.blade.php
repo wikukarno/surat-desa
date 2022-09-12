@@ -11,6 +11,7 @@
 <body class="hold-transition login-page">
     @yield('content')
 
+    {{-- script --}}
     @stack('prepend-script')
     @include('includes.home.script')
     @stack('addon-script')
