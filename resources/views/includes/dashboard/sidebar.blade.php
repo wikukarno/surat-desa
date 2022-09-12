@@ -12,7 +12,7 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         @if (Auth::user()->foto_profile == null)
-            <img src="{{ asset('assets/images/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('assets/images/user.png') }}" class="img-circle elevation-2" alt="User Image">
         @else
             <img src="{{ Storage::url(Auth::user()->foto_profile) }}" class="img-circle elevation-2" alt="User Image">
         @endif
@@ -58,7 +58,7 @@
           </a>
         </li>
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link">
+          <a href="{{ route('lurah.data-penduduk.index') }}" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Staff & Penduduk
@@ -66,7 +66,7 @@
           </a>
         </li>
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link">
+          <a href="{{ route('lurah.akun') }}" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
               Akun
@@ -101,7 +101,7 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         @if (Auth::user()->foto_profile == null)
-            <img src="{{ asset('assets/images/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('assets/images/user.png') }}" class="img-circle elevation-2" alt="User Image">
         @else
             <img src="{{ Storage::url(Auth::user()->foto_profile) }}" class="img-circle elevation-2" alt="User Image">
         @endif
@@ -147,7 +147,7 @@
           </a>
         </li>
         <li class="nav-item menu-open">
-          <a href="{{ route('data-penduduk.index') }}" class="nav-link {{ (request()->is('pages/dashboard/staff/penduduk') ? 'active' : '') }}">
+          <a href="{{ route('staff.data-penduduk.index') }}" class="nav-link {{ (request()->is('pages/dashboard/staff/penduduk') ? 'active' : '') }}">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Staff & Penduduk
@@ -190,7 +190,7 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         @if (Auth::user()->foto_profile == null)
-            <img src="{{ asset('assets/images/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('assets/images/user.png') }}" class="img-circle elevation-2" alt="User Image">
         @else
             <img src="{{ Storage::url(Auth::user()->foto_profile) }}" class="img-circle elevation-2" alt="User Image">
         @endif

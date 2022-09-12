@@ -32,7 +32,7 @@
                                                 @else
 
                                                 <img class="profile-user-img img-fluid img-circle"
-                                                src="{{ asset('assets/images/avatar5.png') }}"
+                                                src="{{ asset('assets/images/user.png') }}"
                                                 alt="User profile picture">
                                                 <input type="file" name="foto_profile" id="update-image-staff" style="display: none" onchange="form.submit()">
 
@@ -81,26 +81,6 @@
         function updateImage() {
             document.getElementById('update-image-staff').click();
         }
-
-        // $('#foto-profile').attr('src', '{{ asset('storage/'.Auth::user()->foto_profile) }}');
-
-        $('#tb_sku').DataTable({
-            processing: true,
-            serverSide: true,
-            ordering: [[1, 'asc']],
-            ajax: {
-                url: "{{ route('data-penduduk.index') }}",
-            },
-            columns: [
-                { data: 'DT_RowIndex', name: 'id' },
-                { data: 'foto_profile', name: 'foto_profile' },
-                { data: 'email', name: 'email' },
-                { data: 'name', name: 'name' },
-                { data: 'no_telephone', name: 'no_telephone' },
-                { data: 'alamat', name: 'alamat' },
-            ],
-
-        });
 
         function ubahProfile(id){
             $('#ubahProfileModal').modal('show');

@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class SKP extends Model
 {
     use HasFactory;
+
+    protected $table = 'surat_keterangan_pemakaman';
+    protected $fillable = [
+        'nama',
+        'nik',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'agama',
+        'status_perkawinan',
+        'pekerjaan',
+        'alamat',
+        'keperluan',
+        'status',
+        'user_id',
+    ];
 }

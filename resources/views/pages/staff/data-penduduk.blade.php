@@ -45,7 +45,7 @@
             serverSide: true,
             ordering: [[1, 'asc']],
             ajax: {
-                url: "{{ route('data-penduduk.index') }}",
+                url: "{{ route('staff.data-penduduk.index') }}",
             },
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },

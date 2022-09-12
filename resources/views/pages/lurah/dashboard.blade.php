@@ -10,24 +10,25 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-id-card"></i></span>
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">SKCK</span>
+                <span class="info-box-text">Penduduk</span>
                 <span class="info-box-number">
-                  10
-                  <small>%</small>
+                  {{ $user }}
                 </span>
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-id-card"></i></span>
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-store"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">KTP</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">SK Usaha</span>
+                <span class="info-box-number">
+                  {{ $skuLurah }}
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -38,11 +39,13 @@
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-id-card"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-procedures"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">TKI / TKW</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-text">SK Pemakaman</span>
+                <span class="info-box-number">
+                  {{ $skpLurah }}
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -50,11 +53,13 @@
           </div>
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-id-card"></i></span>
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-dollar-sign"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Legalisasi Umum</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-text">SK Tidak Mampu</span>
+                <span class="info-box-number">
+                  {{ $sktmLurah }}
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>

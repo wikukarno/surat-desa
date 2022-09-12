@@ -4,6 +4,7 @@ use App\Http\Controllers\CetakController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Lurah\DashboardLurahController;
+use App\Http\Controllers\Lurah\ProfileLurahController;
 use App\Http\Controllers\Lurah\SkpLurahController;
 use App\Http\Controllers\Lurah\SktmLurahController;
 use App\Http\Controllers\Lurah\SkuLurahController;
@@ -41,6 +42,11 @@ Route::prefix('/pages/dashboard/lurah')
         Route::post('/sku/setujui/{id}', [SkuLurahController::class, 'update'])->name('sku-lurah.update');
         Route::get('/skp', [SkpLurahController::class, 'index'])->name('skp-lurah.index');
         Route::get('/sktm', [SktmLurahController::class, 'index'])->name('sktm-lurah.index');
+        Route::get('/penduduk', [DataPendudukController::class, 'getPendudukLurah'])->name('lurah.data-penduduk.index');
+        Route::get('/akun', [ProfileLurahController::class, 'index'])->name('lurah.akun');
+        Route::post('/akun/update', [ProfileLurahController::class, 'update'])->name('lurah.update-akun');
+        Route::post('/get-akun', [ProfileLurahController::class, 'show'])->name('lurah.get-akun');
+        Route::post('/ubah-foto', [ProfileLurahController::class, 'ubahFoto'])->name('lurah.ubah-foto');
     });
 
 Route::prefix('/pages/dashboard/staff')
@@ -51,7 +57,7 @@ Route::prefix('/pages/dashboard/staff')
         Route::get('/sku', [SkuStaffController::class, 'index'])->name('sku-staff.index');
         Route::post('/sku/tolak-sku', [SkuStaffController::class, 'tolakSku'])->name('sku-staff.tolak');
         Route::post('/sku/teruskan/{id}', [SkuStaffController::class, 'update'])->name('sku-staff.update');
-        Route::get('/penduduk', [DataPendudukController::class, 'index'])->name('data-penduduk.index');
+        Route::get('/penduduk', [DataPendudukController::class, 'getPendudukStaff'])->name('staff.data-penduduk.index');
         Route::get('/akun', [ProfileStaffController::class, 'index'])->name('staff.akun');
         Route::post('/akun/update', [ProfileStaffController::class, 'update'])->name('staff.update-akun');
         Route::post('/get-akun', [ProfileStaffController::class, 'show'])->name('staff.get-akun');
