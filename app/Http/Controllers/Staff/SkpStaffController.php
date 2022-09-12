@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SkpUserController extends Controller
+class SkpStaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SkpUserController extends Controller
      */
     public function index()
     {
-        return view('pages.user.skp.index');
+        return view('pages.staff.skp.index');
     }
 
     /**

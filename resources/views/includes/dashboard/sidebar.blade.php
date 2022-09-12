@@ -41,6 +41,23 @@
           </a>
         </li>
         <li class="nav-item menu-open">
+          <a href="{{ route('skp-lurah.index') }}" class="nav-link {{ (request()->is('pages/dashboard/lurah/skp')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Pemakaman
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item menu-open">
+          <a href="{{ route('sktm-lurah.index') }}" class="nav-link {{ (request()->is('pages/dashboard/lurah/sktm')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Tidak Mampu
+            </p>
+          </a>
+        </li>
+        <li class="nav-item menu-open">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
@@ -109,6 +126,23 @@
             <i class="nav-icon fas fa-file"></i>
             <p>
               SK Usaha
+            </p>
+          </a>
+        </li>
+        <li class="nav-item menu-open">
+          <a href="{{ route('skp-staff.index') }}" class="nav-link {{ (request()->is('pages/dashboard/staff/skp')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Pemakaman
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item menu-open">
+          <a href="{{ route('sktm-staff.index') }}" class="nav-link {{ (request()->is('pages/dashboard/staff/sktm')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              SK Tidak Mampu
             </p>
           </a>
         </li>
@@ -187,7 +221,7 @@
         </li>
 
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link">
+          <a href="{{ route('skp.index') }}" class="nav-link {{ (request()->is('pages/dashboard/user/skp')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-file"></i>
             <p>
               SK Pemakaman
@@ -196,7 +230,7 @@
         </li>
 
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link">
+          <a href="{{ route('sktm.index') }}" class="nav-link {{ (request()->is('pages/dashboard/user/sktm')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-file"></i>
             <p>
               SK Tidak Mampu
