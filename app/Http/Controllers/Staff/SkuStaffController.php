@@ -44,7 +44,7 @@ class SkuStaffController extends Controller
                         ';
                     } elseif ($item->status == 'Selesai Diproses') {
                         return '
-                            <a href="' . route('sku-staff.cetak-sku', $item->id) . '" class="btn btn-sm btn-success">
+                            <a href="' . route('sku-staff.cetak-sku', $item->id) . '" class="btn btn-sm btn-success" target="_blank">
                                 Cetak
                             </a>
                         ';
@@ -145,7 +145,6 @@ class SkuStaffController extends Controller
         $sku = SKU::findOrFail($id);
         $sku->status = 'Sedang Diproses';
         $sku->posisi = 'lurah';
-        $sku->nomor_surat = $request->id;
         $sku->save();
 
         if ($sku) {

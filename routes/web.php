@@ -47,6 +47,7 @@ Route::prefix('/pages/dashboard/lurah')
         Route::post('/akun/update', [ProfileLurahController::class, 'update'])->name('lurah.update-akun');
         Route::post('/get-akun', [ProfileLurahController::class, 'show'])->name('lurah.get-akun');
         Route::post('/ubah-foto', [ProfileLurahController::class, 'ubahFoto'])->name('lurah.ubah-foto');
+        Route::post('/sku/get-lampiran', [SkuLurahController::class, 'show'])->name('sku-lurah.show');
     });
 
 Route::prefix('/pages/dashboard/staff')

@@ -18,7 +18,7 @@ class CetakController extends Controller
         $data = file_get_contents($path);
         $pic  = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $sku = SKU::where('id', $request->id)->first();
+        $sku = SKU::with(['user'])->where('id', $request->id)->first();
         $user = User::where('id', $sku->users_id)->first();
         $pdf  = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pages.cetak.surat-keterangan-usaha', [
             'title' => 'Surat Tugas',
@@ -28,7 +28,7 @@ class CetakController extends Controller
         ]);
 
         $tgl_cetak = date('d-M-Y');
-        return $pdf->download('Surat_Keterangan_Usaha_' . $user->name . '_' . $tgl_cetak . '.pdf');
-        // return $pdf->stream('Surat_Keterangan_Usaha_' . $user->name .  '.pdf');
+        // return $pdf->download('Surat_Keterangan_Usaha_' . $user->name . '_' . $tgl_cetak . '.pdf');
+        return $pdf->stream('Surat_Keterangan_Usaha_' . $user->name .  '.pdf');
     }
 }

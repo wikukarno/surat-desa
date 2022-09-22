@@ -119,6 +119,20 @@
                     _token: '{{csrf_token()}}'
                 },
                 success: (data) => {
+                    $('#sku_no_nik').val(data.no_nik);
+                    $('#sku_nama').val(data.nama);
+                    $('#sku_nama_usaha').val(data.nama_usaha);
+                    $('#sku_tempat_lahir').val(data.tempat_lahir);
+                    $('#sku_tanggal_lahir').val(data.tanggal_lahir);
+                    $('#sku_jenis_kelamin').val(data.jenis_kelamin);
+                    $('#sku_pekerjaan').val(data.pekerjaan);
+                    $('#sku_status_perkawinan').val(data.status_perkawinan);
+                    $('#sku_agama').val(data.agama);
+                    $('#sku_kecamatan').val(data.kecamatan);
+                    $('#sku_kelurahan').val(data.kelurahan);
+                    $('#sku_rt_rw').val(data.rt_rw);
+                    $('#sku_alamat').val(data.alamat);
+
                     $('#ktp').attr('src', '{{ asset('storage') }}/'+data.foto_ktp);
                     $('#kk').attr('src', '{{ asset('storage') }}/'+data.foto_kk);
                     $('#skt_rt_rw').attr('src', '{{ asset('storage') }}/'+data.foto_surat_rt_rw);

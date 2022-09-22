@@ -1,68 +1,78 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>APLIKASI PELAYANAN SURAT MENYURAT KANTOR LURAH SOREK SATU</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-  </head>
-  <body>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <header class="text-center">
-		<div class="overlay">
-			<figure class="figure">
-				<img src="{{ asset('assets/images/logo.png') }}" class="img-fluid figure-img w-50 h-50" alt="">
-			</figure>
-            <h1 class="text-white">
-              SELAMAT DATANG DI!
-              <br />
-              APLIKASI PELAYANAN SURAT MENYURAT <br /> KANTOR LURAH SOREK SATU
-          </h1>
-          <p class="mt-3 text-white">
-              Pengurusan surat menjadi mudah
-              <br />
-              tinggal klik surat langsung jadi.
-          </p>
-          @auth
-            <div class="d-flex justify-content-center">
-                @if (Auth::user()->roles == 'Lurah')
-                    <a href="{{ route('lurah.dashboard') }}" class="btn btn-success mx-2 mt-4">
-                        Dashboard
-                    </a>
-					@elseif (Auth::user()->roles == 'Staff')
-					<a href="{{ route('staff.dashboard') }}" class="btn btn-success mx-2 mt-4">
-                        Dashboard
-                    </a>
-					@else
-					<a href="{{ route('user.dashboard') }}" class="btn btn-success mx-2 mt-4">
-                        Dashboard
-                    </a>
-                @endif
-            </div>    
-          @endauth
-          @guest
-          <div class="d-flex justify-content-center">
-              <a href="{{ route('login') }}" class="btn btn-masuk mx-2 mt-4">
-                  Masuk
-              </a>
-              <a href="{{ route('register') }}" class="btn btn-daftar mx-2 mt-4">
-                  Daftar
-              </a>
-          </div>
-          @endguest
-        </div>
-    </header>
+  <title>APLIKASI PELAYANAN SURAT MENYURAT KANTOR LURAH SOREK SATU</title>
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+</head>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<body>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  </body>
+  <header class="text-center">
+    <div class="overlay">
+      <figure class="figure">
+        <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid figure-img w-50 h-50" alt="">
+      </figure>
+      <h1 class="text-white">
+        SELAMAT DATANG DI!
+        <br />
+        APLIKASI PELAYANAN SURAT MENYURAT <br /> KANTOR LURAH SOREK SATU
+      </h1>
+      <p class="mt-3 text-white">
+        Pengurusan surat menjadi mudah
+        <br />
+        tinggal klik surat langsung jadi.
+      </p>
+      @auth
+      <div class="d-flex justify-content-center">
+        @if (Auth::user()->roles == 'Lurah')
+        <a href="{{ route('lurah.dashboard') }}" class="btn btn-success mx-2 mt-4">
+          Dashboard
+        </a>
+        @elseif (Auth::user()->roles == 'Staff')
+        <a href="{{ route('staff.dashboard') }}" class="btn btn-success mx-2 mt-4">
+          Dashboard
+        </a>
+        @else
+        <a href="{{ route('user.dashboard') }}" class="btn btn-success mx-2 mt-4">
+          Dashboard
+        </a>
+        @endif
+      </div>
+      @endauth
+      @guest
+      <div class="d-flex justify-content-center">
+        <a href="{{ route('login') }}" class="btn btn-masuk mx-2 mt-4">
+          Masuk
+        </a>
+        <a href="{{ route('register') }}" class="btn btn-daftar mx-2 mt-4">
+          Daftar
+        </a>
+      </div>
+      @endguest
+    </div>
+  </header>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+  </script>
+</body>
+
 </html>
