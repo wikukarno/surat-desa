@@ -28,7 +28,7 @@ class CetakController extends Controller
         ]);
 
         $tgl_cetak = date('d-M-Y');
-        // return $pdf->download('Surat_Keterangan_Usaha_' . $user->name . '_' . $tgl_cetak . '.pdf');
-        return $pdf->stream('Surat_Keterangan_Usaha_' . $user->name .  '.pdf');
+        return $pdf->download('Surat_Keterangan_Usaha_' . $user->name . '_' . $tgl_cetak . '.pdf');
+        // return $pdf->stream('Surat_Keterangan_Usaha_' . $user->name .  '.pdf');
     }
 }
