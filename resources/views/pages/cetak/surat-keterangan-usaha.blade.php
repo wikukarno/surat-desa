@@ -123,7 +123,8 @@
         <table style="padding-left: 50px; margin-top: 20px; line-height: 24px">
             @php
             // $ttl = \Carbon\Carbon::now()->isoFormat('D MMMM Y', strtotime($sku->tanggal_lahir));
-            $ttl = date('d F Y', strtotime($sku->tanggal_lahir));
+            // $ttl = date('d l Y', strtotime($sku->tanggal_lahir));
+            $ttl = \Carbon\Carbon::parse($sku->tanggal_lahir)->isoFormat('D MMMM Y');
             @endphp
             <tbody>
                 <tr>
