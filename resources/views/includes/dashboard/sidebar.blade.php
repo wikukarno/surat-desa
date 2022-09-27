@@ -63,6 +63,15 @@
           </a>
         </li>
         <li class="nav-item menu-open">
+          <a href="{{ route('lurah.laporan') }}"
+            class="nav-link {{ (request()->is('pages/dashboard/lurah/laporan')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-flag"></i>
+            <p>
+              Laporan
+            </p>
+          </a>
+        </li>
+        <li class="nav-item menu-open">
           <a href="{{ route('lurah.data-penduduk.index') }}" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
@@ -70,6 +79,7 @@
             </p>
           </a>
         </li>
+
         <li class="nav-item menu-open">
           <a href="{{ route('lurah.akun') }}" class="nav-link">
             <i class="nav-icon fas fa-user"></i>

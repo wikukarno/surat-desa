@@ -19,11 +19,11 @@ Data Laporan
                                 <thead>
                                     <tr>
                                         <th>No.</th>
+                                        <th>NIK</th>
                                         <th>Nama</th>
                                         <th>Jenis Surat</th>
                                         <th>Tanggal Diajukan</th>
                                         <th>Tanggal Disetujui</th>
-                                        <th>Nomor HP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,15 +45,15 @@ Data Laporan
             serverSide: true,
             ordering: [[1, 'asc']],
             ajax: {
-                url: "{{ route('lurah.data-penduduk.index') }}",
+                url: "{{ route('lurah.laporan') }}",
             },
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },
-                { data: 'foto_profile', name: 'foto_profile' },
-                { data: 'email', name: 'email' },
-                { data: 'name', name: 'name' },
-                { data: 'no_telephone', name: 'no_telephone' },
-                { data: 'alamat', name: 'alamat' },
+                { data: 'no_nik', name: 'no_nik' },
+                { data: 'user.name', name: 'user.name' },
+                { data: 'jenis_surat', name: 'jenis_surat' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'updated_at', name: 'updated_at' },
             ],
 
         });

@@ -10,8 +10,7 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{ route('sku.store') }}" method="POST" enctype="multipart/form-data"
-                    enctype="multipart/form-data">
+                <form action="{{ route('sku.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-4">
@@ -151,25 +150,20 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="">Foto KTP</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required
-                                    oninvalid="this.setCustomValidity('Masukan foto KTP')"
-                                    oninput="setCustomValidity('')">
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="">Foto KK</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required
-                                    oninvalid="this.setCustomValidity('Masukan foto KK')"
-                                    oninput="setCustomValidity('')">
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="">Surat Keterangan RT/RW</label>
                                 <input type="file" class="form-control" id="foto_surat_rt_rw" name="foto_surat_rt_rw"
-                                    required oninvalid="this.setCustomValidity('Masukan foto keterangan RT/RW')"
-                                    oninput="setCustomValidity('')">
+                                    required>
                             </div>
                         </div>
                     </div>

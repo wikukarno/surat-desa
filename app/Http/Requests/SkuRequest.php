@@ -41,7 +41,10 @@ class SkuRequest extends FormRequest
             'no_nik' => 'string',
             'posisi' => 'string',
             'status' => 'string',
-
+            'jenis_surat' => 'string',
+            'foto_ktp' => 'string|required|mimes:jpeg,jpg,png',
+            'foto_kk' => 'string|required|mimes:jpeg,jpg,png',
+            'foto_surat_rt_rw' => 'string|required|mimes:jpeg,jpg,png',
         ];
     }
 }
