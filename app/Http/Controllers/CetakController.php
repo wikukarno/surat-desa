@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Letters;
 use App\Models\SKU;
 use App\Models\User;
 use Carbon\Carbon;
@@ -18,7 +19,7 @@ class CetakController extends Controller
         $data = file_get_contents($path);
         $pic  = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $sku = SKU::with(['user'])->where('id', $request->id)->first();
+        $sku = Letters::with(['user'])->where('id', $request->id)->first();
         $user = User::where('id', $sku->users_id)->first();
         $pdf  = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pages.cetak.surat-keterangan-usaha', [
             'title' => 'Surat Tugas',
